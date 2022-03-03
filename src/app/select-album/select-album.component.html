@@ -1,0 +1,28 @@
+
+<!-- Page Content -->
+<div class="container">
+
+  <div class="row">
+    <div class="col" *ngFor="let aud of audio">
+
+      <div class="card" style="max-width: 90%;">
+        <img class="card-img-top mp3-cover" src="https://www.stockvault.net/data/2017/09/30/239530/thumb16.jpg"  alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title">{{aud.artist}}</h4>
+          <p class="card-text">{{aud.soundName}}</p>
+          <div class="mp3-audio" (click)="onSelectAudio(aud?.soundName!)">
+            <audio controls class="mp3-auido">
+              <source [src]="aud!"   type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+

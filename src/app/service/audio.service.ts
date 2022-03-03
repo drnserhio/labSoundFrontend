@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Audio} from "../model/audio";
@@ -28,8 +28,8 @@ export class AudioService {
     return formData;
   }
 
-  public getAudio(soundName: string): Observable<Audio> {
-    return this.http.get<Audio>(`${this.host}/get/${soundName}`)
+  public getAudio(soundName: string): Observable<any> {
+    return this.http.get<any>(`${this.host}/get/${soundName}`)
   }
 
   public getAllAudiosByArtist(artist: string): Observable<Audio[]> {

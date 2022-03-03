@@ -15,7 +15,7 @@ export class ArtistService {
 
 
   public createArtist(formData: FormData): Observable<Artist>{
-  return this.http.post<Artist>(`${this.host}/create_artist`, formData);
+  return this.http.post<Artist>(`${this.host}/create`, formData);
 }
 
 public createFormDataForCreateArtist(fileImage: File, artist: string, title: string) {
@@ -38,7 +38,7 @@ public createFormDataForCreateAtristWithoutTitle(fileImage: File,artist: string)
 
 
 public updateArtist(fromData: FormData): Observable<Artist>{
-  return this.http.put(`${this.host}/update_artist`, fromData);
+  return this.http.put(`${this.host}/update`, fromData);
 }
 
 public createFormDataForUpdateArtist(fileImage: File, artist: string, title: string) {

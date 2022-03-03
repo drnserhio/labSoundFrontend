@@ -4,4 +4,5 @@ export class Album {
   artist?: string;
   albumName?: string;
   yearRelease?: string;
+  imagePoster?: string;
 }
