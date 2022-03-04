@@ -10,9 +10,9 @@
         <div class="card-block">
           <h4 class="card-title">{{aud.artist}}</h4>
           <p class="card-text">{{aud.soundName}}</p>
-          <div class="mp3-audio" (click)="onSelectAudio(aud?.soundName!)">
-            <audio controls class="mp3-auido">
-              <source [src]="aud!"   type="audio/mpeg">
+          <div class="mp3-audio">
+            <audio controls class="mp3-auido" (click)="onSelectAudio(aud?.soundName!)">
+              <source [src]="trustedUrl"   type="audio/mpeg">
               Your browser does not support the audio element.
             </audio>
           </div>

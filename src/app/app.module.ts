@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -18,7 +18,7 @@ import { SelectAlbumComponent } from './select-album/select-album.component';
         BrowserModule,
         AppRoutingModule,
         RouterModule,
-        HttpClientModule
+        HttpClientModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

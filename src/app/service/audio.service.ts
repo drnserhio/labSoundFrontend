@@ -28,8 +28,8 @@ export class AudioService {
     return formData;
   }
 
-  public getAudio(soundName: string): Observable<any> {
-    return this.http.get<any>(`${this.host}/get/${soundName}`)
+  public getAudio(soundName: string): Observable<Blob> {
+    return this.http.get(`${this.host}/get/${soundName}`, {responseType: 'blob'})
   }
 
   public getAllAudiosByArtist(artist: string): Observable<Audio[]> {

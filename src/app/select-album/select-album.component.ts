@@ -3,6 +3,7 @@ import {SelectAlbumHelper} from "../util/select-album-helper";
 import {AudioService} from "../service/audio.service";
 import {Audio} from "../model/audio";
 import {HttpErrorResponse} from "@angular/common/http";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-select-album',
@@ -13,9 +14,10 @@ export class SelectAlbumComponent implements OnInit {
 
   private selectAlbum?: string;
   audio?: Audio[];
-  private aud?: Audio;
+  trustedUrl?: SafeUrl;
 
-  constructor(private audioService: AudioService) {
+  constructor(private audioService: AudioService,
+              private sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
@@ -41,12 +43,10 @@ export class SelectAlbumComponent implements OnInit {
   onSelectAudio(soundName: string) {
     this.audioService.getAudio(soundName).subscribe(
       (response) => {
-        this.aud = JSON.parse(response);
-      },
-      (response: HttpErrorResponse) => {
-        console.log(response);
+        var blob = new Blob([response], {type: 'audio/mpeg'})
+        this.trustedUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
       }
     )
-    return undefined;
   }
 }
+
