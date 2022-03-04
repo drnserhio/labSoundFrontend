@@ -7,6 +7,7 @@ import {RouterModule} from "@angular/router";
 import { AlbumListComponent } from './album-list/album-list.component';
 import {HttpClientModule} from "@angular/common/http";
 import { SelectAlbumComponent } from './select-album/select-album.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [

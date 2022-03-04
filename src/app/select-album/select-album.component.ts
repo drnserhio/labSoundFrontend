@@ -5,6 +5,7 @@ import {Audio} from "../model/audio";
 import {HttpErrorResponse} from "@angular/common/http";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
+
 @Component({
   selector: 'app-select-album',
   templateUrl: './select-album.component.html',
@@ -41,12 +42,25 @@ export class SelectAlbumComponent implements OnInit {
   }
 
   onSelectAudio(soundName: string) {
+    console.log(soundName);
     this.audioService.getAudio(soundName).subscribe(
       (response) => {
+        // @ts-ignore
+        document.getElementById("audioId").load();
         var blob = new Blob([response], {type: 'audio/mpeg'})
         this.trustedUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+        // @ts-ignore
+        document.getElementById("audioId").play()
       }
     )
+  }
+
+
+  stopAudio() {
+    // @ts-ignore
+    document.getElementById("audioId").pause();
+    // @ts-ignore
+    document.getElementById("audioId").currentTime = 0;
   }
 }
 
