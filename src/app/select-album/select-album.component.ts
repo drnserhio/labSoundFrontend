@@ -4,6 +4,7 @@ import {AudioService} from "../service/audio.service";
 import {Audio} from "../model/audio";
 import {HttpErrorResponse} from "@angular/common/http";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -11,13 +12,15 @@ import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
   templateUrl: './select-album.component.html',
   styleUrls: ['./select-album.component.css']
 })
+
 export class SelectAlbumComponent implements OnInit {
 
   private selectAlbum?: string;
   audio?: Audio[];
   trustedUrl?: SafeUrl;
 
-  constructor(private audioService: AudioService,
+  constructor(private router: Router,
+              private audioService: AudioService,
               private sanitizer: DomSanitizer) {
   }
 
@@ -36,7 +39,9 @@ export class SelectAlbumComponent implements OnInit {
         this.audio = resposne;
       },
       (error: HttpErrorResponse) => {
-        console.log(error.message);
+        console.log(error.error.message);
+        alert(error.error.message);
+        this.router.navigateByUrl('/albums_list');
       }
     )
   }

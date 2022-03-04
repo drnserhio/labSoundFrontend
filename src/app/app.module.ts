@@ -8,6 +8,10 @@ import { AlbumListComponent } from './album-list/album-list.component';
 import {HttpClientModule} from "@angular/common/http";
 import { SelectAlbumComponent } from './select-album/select-album.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSliderModule} from "@angular/material/slider";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -20,6 +24,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         AppRoutingModule,
         RouterModule,
         HttpClientModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSliderModule,
+
     ],
   providers: [],
   bootstrap: [AppComponent]
