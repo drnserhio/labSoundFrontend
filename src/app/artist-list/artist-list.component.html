@@ -1,0 +1,66 @@
+
+<body class="fone">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="http://clesolea.com/2SCB">Brand Logo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav5" aria-controls="navbarNav5" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav5">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://clesolea.com/2SCB">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/artist_list">Artists</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/albums_list">Albums</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin Menu
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="/create_atrist">New artist</a>
+          <a class="dropdown-item" routerLink="create_album">New Album</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://clesolea.com/2SCB">Contact</a>
+      </li>
+    </ul>
+  </div>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+</nav>
+
+<div class="py-6 bg-light-primary">
+  <div class="container" >
+    <div class="row justify-content-center text-center mb-4">
+      <div class="col-xl-6 col-lg-8 col-sm-10">
+        <h2 class="font-weight-bold">Popular artists</h2>
+        <p class="text-muted mb-0">We chose popular artists for your taste.</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center justify-content-center px-xl-6 aos-init aos-animate" data-aos="fade-up" >
+      <div class="col my-3" *ngFor="let art of artists">
+        <div class="card border-hover-primary hover-scale">
+          <div class="card-body" (click)="onSelectArtist(art.artist!)">
+            <div class="text-primary mb-5">
+<!--              [ngStyle]="{'background-image': 'url(' + art?.image + ')'}"-->
+                <img src="{{art.image!}}" alt="" style="max-height: 130px" width="300" height="200">
+            </div>
+            <h3 class="font-weight-bold mb-3">{{art.artist}}</h3>
+            <h5 class="text-muted mb-0">{{art.title}}</h5>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>

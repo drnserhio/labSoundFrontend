@@ -8,4 +8,7 @@ export class SelectAlbumHelper {
     return localStorage.getItem("albumName");
   }
 
+  static deleteAlbumNameForLocalCache() {
+    localStorage.removeItem('albumName')
+  }
 }

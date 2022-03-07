@@ -12,12 +12,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from "@angular/material/slider";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
+import { ArtistListComponent } from './artist-list/artist-list.component';
+import { CreateArtistComponent } from './create-artist/create-artist.component';
+import {FormsModule} from "@angular/forms";
+import { CreateAlbumComponent } from './create-album/create-album.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlbumListComponent,
     SelectAlbumComponent,
+    ArtistListComponent,
+    CreateArtistComponent,
+    CreateAlbumComponent,
   ],
     imports: [
         BrowserModule,
@@ -28,6 +35,7 @@ import {MatIconModule} from "@angular/material/icon";
         MatToolbarModule,
         MatIconModule,
         MatSliderModule,
+        FormsModule,
 
     ],
   providers: [],

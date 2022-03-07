@@ -1,6 +1,3 @@
-body {
-  background: #eee
-}
 
 .ratings i {
   color: green
@@ -12,4 +9,8 @@ body {
 
 .col-md-4 {
   margin-top: 27px
+}
+
+.fone {
+  background-color: #f9fbff!important;
 }

@@ -1,6 +1,8 @@
+<body class="fone">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="http://clesolea.com/2SCB">Brand Logo</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav5" aria-controls="navbarNav5" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav5"
+          aria-controls="navbarNav5" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav5">
@@ -9,13 +11,14 @@
         <a class="nav-link" href="http://clesolea.com/2SCB">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://clesolea.com/2SCB">About us</a>
+        <a class="nav-link" routerLink="/artist_list">Artists</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://clesolea.com/2SCB">Products</a>
+        <a class="nav-link" routerLink="/albums_list">Albums</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
           Dropdown
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -41,12 +44,17 @@
     <div class="col-md-4" *ngFor="let album of albums">
       <div class="card p-3">
         <div class="d-flex flex-row mb-3"><img src="{{album.imagePoster}}" width="70">
-          <div class="d-flex flex-column ml-2"><span>{{album.artist}}</span><span class="text-black-50">{{album.albumName}}</span><span class="ratings"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span></div>
+          <div class="d-flex flex-column ml-2"><span>{{album.artist}}</span><span
+            class="text-black-50">{{album.albumName}}</span><span class="ratings"><i class="fa fa-star"></i><i
+            class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span></div>
         </div>
-        <div style="cursor: pointer;" class="d-flex justify-content-between install mt-3"><span>{{album.yearRelease}}</span><span class="text-primary" (click)="onSelectAlbum(album.albumName!)">View&nbsp;<i class="fa fa-angle-right"></i></span></div>
+        <div style="cursor: pointer;" class="d-flex justify-content-between install mt-3">
+          <span>{{album.yearRelease}}</span><span class="text-primary" (click)="onSelectAlbum(album.albumName!)">View&nbsp;<i
+          class="fa fa-angle-right"></i></span></div>
       </div>
     </div>
 
 
   </div>
 </div>
+</body>
