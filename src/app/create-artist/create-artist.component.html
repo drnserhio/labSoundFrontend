@@ -1,4 +1,42 @@
 <body class="fone">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="http://clesolea.com/2SCB">Brand Logo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav5"
+          aria-controls="navbarNav5" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav5">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/artist_list">Artists</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/albums_list">Albums</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin Menu
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="/create_atrist">New artist</a>
+          <a class="dropdown-item" routerLink="/create_album">New album</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://clesolea.com/2SCB">Contact</a>
+      </li>
+    </ul>
+  </div>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+</nav>
+
 <div class="container bootstrap snippets bootdey">
   <h1 class="text-primary">Create artist</h1>
   <hr>
@@ -10,7 +48,7 @@
              alt="avatar">
         <h6>Upload a different photo...</h6>
 
-        <input type="file" name="fileImage" class="form-control" ngModel (change)="onSelectImage($event)">
+        <input type="file" name="fileImage" class="form-control" accept="image/*" ngModel (change)="onSelectImage($event)">
       </div>
     </div>
 

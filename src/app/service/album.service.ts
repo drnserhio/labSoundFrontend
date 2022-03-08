@@ -38,9 +38,24 @@ export class AlbumService {
     return formData;
   }
 
+  public updateAlbumInfo(formData: FormData, albumName: string): Observable<Album> {
+    return this.http.put(`${this.host}/update_album_info/${albumName}`, formData)
+  }
+
+  public createFormDataForUpdateAlbumInfo(artist: string, yearRelease: string) {
+    const formData = new FormData();
+    formData.append("artist", artist);
+    formData.append("yearRelease", yearRelease);
+    return formData;
+  }
+
+
+
+
   public findByAlbum(albumName: string): Observable<Album> {
     return this.http.get(`${this.host}/get_album/${albumName}`)
   }
+
   public findAllByArtist(artist: string): Observable<Album[]> {
     return this.http.get<Album[]>(`${this.host}/get_all_album_artist/${artist}`);
   }
@@ -51,5 +66,5 @@ export class AlbumService {
 
   public deleteAlbum(album: string): Observable<boolean> {
     return this.http.delete<boolean>(`${this.host}/delete_album/${album}`)
-}
+  }
 }

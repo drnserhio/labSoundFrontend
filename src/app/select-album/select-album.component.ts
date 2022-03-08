@@ -24,6 +24,7 @@ export class SelectAlbumComponent implements OnInit, OnDestroy {
   audio?: Audio[];
   trustedUrl?: SafeUrl;
   public albumSave?: Album;
+  private deleteAudioName?: string;
 
   constructor(private router: Router,
               private albumService: AlbumService,
@@ -33,7 +34,6 @@ export class SelectAlbumComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.onClickSelectAlbum();
-    this.getAlbum();
     this.getAllAudioByAlbumName();
   }
 
@@ -43,6 +43,7 @@ export class SelectAlbumComponent implements OnInit, OnDestroy {
 
   private onClickSelectAlbum() {
     this.selectAlbum = SelectAlbumHelper.getAlbumNameForLocalStorage()!;
+    console.log(this.selectAlbum)
   }
 
   private getAllAudioByAlbumName() {
@@ -93,6 +94,34 @@ export class SelectAlbumComponent implements OnInit, OnDestroy {
 
   private deleteAlbumSelectForLocalCache() {
     SelectAlbumHelper.deleteAlbumNameForLocalCache();
+  }
+
+  onModalAudioRemove(soundName: string) {
+    // @ts-ignore
+    $('#removeAudio').modal('show')
+    this.deleteAudioName = soundName;
+    // $('#removeAudio').modal('toggle')
+  }
+
+  closeRemoveModal() {
+    // @ts-ignore
+    $('#removeAudio').modal('toggle')
+  }
+
+  onDeleteAudio() {
+    this.audioService.deleteAudio(this.deleteAudioName!).subscribe(
+      (response: boolean) => {
+        if (response) {
+          alert("delete successful");
+          this.getAllAudioByAlbumName();
+          // @ts-ignore
+          $('#removeAudio').modal('toggle')
+        }
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.error.message);
+      }
+    )
   }
 }
 
