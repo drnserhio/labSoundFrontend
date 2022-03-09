@@ -56,13 +56,30 @@ export class AlbumService {
     return this.http.get(`${this.host}/get_album/${albumName}`)
   }
 
-  public findAllByArtist(artist: string): Observable<Album[]> {
-    return this.http.get<Album[]>(`${this.host}/get_all_album_artist/${artist}`);
+  public findAllByArtist(artist: string, formData: FormData): Observable<any> {
+    return this.http.post<any>(`${this.host}/get_all_album_artist/${artist}`, formData);
   }
 
-  public findAllAlbum(): Observable<Album[]> {
-    return this.http.get<Album[]>(`${this.host}/all_albums`);
+  public createFormDataForFindAllByArtist(page: number, size: number, column: string) {
+    const formData = new FormData();
+    formData.append("page", JSON.stringify(page));
+    formData.append("size", JSON.stringify(size));
+    formData.append("column", column);
+    return formData;
   }
+
+  public findAllAlbum(formData: FormData): Observable<any> {
+    return this.http.post<any>(`${this.host}/all_albums`, formData);
+  }
+
+  public createFormDataForFindAll(page: number, size: number, column: string) {
+    const formData = new FormData();
+    formData.append("page", JSON.stringify(page));
+    formData.append("size", JSON.stringify(size));
+    formData.append("column", column);
+    return formData;
+  }
+
 
   public deleteAlbum(album: string): Observable<boolean> {
     return this.http.delete<boolean>(`${this.host}/delete_album/${album}`)

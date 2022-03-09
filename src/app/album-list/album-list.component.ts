@@ -7,6 +7,7 @@ import {SelectArtistHelper} from "../util/select-artist-helper";
 import {Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
 import {AudioService} from "../service/audio.service";
+import {ResponseTable} from "../model/response-table";
 
 @Component({
   selector: 'app-album-list',
@@ -14,13 +15,17 @@ import {AudioService} from "../service/audio.service";
   styleUrls: ['./album-list.component.css']
 })
 export class AlbumListComponent implements OnInit, OnDestroy {
-  albums?: Album[];
   updateAlbum?: Album;
   url?: any;
   private imageFile?: File;
   albumNameForAddAudio?: string;
   artistNameForAddAudio?: string;
-  private audioFile?: File;
+  audioFile?: File;
+
+  page = 0;
+  size = 1;
+  column = 'yearRelease';
+  responseTable?: ResponseTable<Album>;
 
   constructor(private albumService: AlbumService,
               private audioService: AudioService,
@@ -36,9 +41,11 @@ export class AlbumListComponent implements OnInit, OnDestroy {
 
 
   getAllAlbums() {
-    this.albumService.findAllAlbum().subscribe(
-      (response: Album[]) => {
-        this.albums = response;
+    const formData = this.albumService.createFormDataForFindAll(this.page, this.size, this.column);
+    this.albumService.findAllAlbum(formData).subscribe(
+      (response: ResponseTable<Album>) => {
+        console.log(response);
+        this.responseTable = response;
       },
       (error: HttpErrorResponse) => {
         console.log(error.message);
@@ -63,10 +70,11 @@ export class AlbumListComponent implements OnInit, OnDestroy {
 
   private getAlbumForArtist() {
     const artistName = SelectArtistHelper.getArtistNameForLocalStorage();
-    console.log(artistName);
-    this.albumService.findAllByArtist(artistName!).subscribe(
-      (response: Album[]) => {
-        this.albums = response;
+    const formData = this.albumService.createFormDataForFindAllByArtist(this.page, this.size, this.column);
+    this.albumService.findAllByArtist(artistName!, formData).subscribe(
+      (response: ResponseTable<Album>) => {
+        console.log(response);
+        this.responseTable = response;
       },
       (error: HttpErrorResponse) => {
         this.router.navigateByUrl("/artist_list")
@@ -163,5 +171,25 @@ export class AlbumListComponent implements OnInit, OnDestroy {
   onSelectAudioFile(e: Event) {
     // @ts-ignore
     this.audioFile = (<HTMLInputElement>e.target).files[0];
+  }
+
+  previousPage() {
+    console.log('previouse');
+    this.page -= 1
+    this.getAlbums();
+  }
+
+  nextPage() {
+    console.log('next');
+    this.page += 1
+    this.getAlbums();
+  }
+
+  onHome() {
+    this.router.navigateByUrl('');
+  }
+
+  onBack() {
+    this.router.navigateByUrl('/artist_list');
   }
 }

@@ -1,16 +1,24 @@
 
-.ratings i {
-  color: green
-}
-
-.install span {
-  font-size: 12px
-}
-
-.col-md-4 {
-  margin-top: 27px
-}
 
 .fone {
   background-color: #f9fbff!important;
+}
+
+
+.carousel-caption {
+  top: 40%;
+  bottom: auto;
+}
+
+
+span {
+  margin: 5px;
+}
+
+img {
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background: fixed;
 }
