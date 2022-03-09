@@ -16,9 +16,6 @@ span {
 }
 
 img {
-
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background: fixed;
+  width: 100%;
+  height: 100%;
 }
