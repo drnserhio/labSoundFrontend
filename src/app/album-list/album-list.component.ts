@@ -14,7 +14,7 @@ import {ResponseTable} from "../model/response-table";
   templateUrl: './album-list.component.html',
   styleUrls: ['./album-list.component.css']
 })
-export class AlbumListComponent implements OnInit, OnDestroy {
+export class AlbumListComponent implements OnInit {
   updateAlbum?: Album;
   url?: any;
   private imageFile?: File;
@@ -35,9 +35,6 @@ export class AlbumListComponent implements OnInit, OnDestroy {
     this.getAlbums()
   }
 
-  ngOnDestroy(): void {
-    this.deleteSelectArtist();
-  }
 
 
   getAllAlbums() {
