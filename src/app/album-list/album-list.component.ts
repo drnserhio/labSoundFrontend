@@ -48,7 +48,8 @@ export class AlbumListComponent implements OnInit, OnDestroy {
         this.responseTable = response;
       },
       (error: HttpErrorResponse) => {
-        console.log(error.message);
+        alert(error.error.message);
+        this.router.navigateByUrl("/artist_list")
       }
     )
   }
@@ -191,5 +192,19 @@ export class AlbumListComponent implements OnInit, OnDestroy {
 
   onBack() {
     this.router.navigateByUrl('/artist_list');
+  }
+
+  onDeleteAlbum(albumName: string) {
+    this.albumService.deleteAlbum(albumName).subscribe(
+      (response: boolean) => {
+        if (response) {
+          alert("album delete : " + albumName + ' successful.')
+          this.getAlbums();
+        }
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.error.message);
+      }
+    )
   }
 }

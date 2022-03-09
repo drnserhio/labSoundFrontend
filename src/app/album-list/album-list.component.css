@@ -6,7 +6,7 @@
 
 
 .carousel-caption {
-  top: 40%;
+  top: 70%;
   bottom: auto;
 }
 
@@ -15,7 +15,17 @@ span {
   margin: 5px;
 }
 
-img {
-  width: 100%;
+.carousel,
+.carousel-inner,
+.carousel-inner .item,
+.carousel-inner img {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+html,
+body {
   height: 100%;
 }
+
+

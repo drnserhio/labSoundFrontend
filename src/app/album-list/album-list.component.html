@@ -1,12 +1,10 @@
-
-<div>
-<body id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel"
+<div id="carouselExampleIndicators" class="carousel slide carousel-fade"
      *ngFor="let album of responseTable?.content!">
 
 
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{{album.imagePoster}}" class="d-block w-100" alt="..." style="height: 100%; width: 100%;">
+    <div class="item active">
+      <img src="{{album.imagePoster}}" class="img-fluid" alt="..." style="height: 100%; width: 100%;">
 
       <div class="carousel-caption">
         <div>
@@ -15,30 +13,38 @@
           <p class="small">{{album.yearRelease}}</p>
 
           <span class="btn btn-sm btn-outline-secondary">
-          <i (click)="onBack()" class="fas fa-arrow-alt-to-left" style="cursor: pointer; font-size: 22px;"></i>
+          <i (click)="onBack()" class="fas fa-arrow-alt-to-left text-white" style="cursor: pointer; font-size: 22px;"></i>
           </span>
           <span class="btn btn-sm btn-outline-secondary">
-          <i (click)="onHome()" class="fas fa-home-lg" style="cursor: pointer; font-size: 22px;"></i>
+          <i (click)="onHome()" class="fas fa-home-lg text-white" style="cursor: pointer; font-size: 22px;"></i>
           </span>
           <span class="btn btn-sm btn-outline-secondary">
             <i (click)="onSelectedAlbumToUpdate(album.albumName!)" style="cursor: pointer; font-size: 25px;"
-               class="fas fa-ellipsis-h float-left"></i>
+               class="fas fa-ellipsis-h  text-white"></i>
           </span>
           <span class="btn btn-sm btn-outline-secondary">
             <i (click)="onSelectAlbumForAddAudio(album.albumName!, album.artist!)"
-               style="cursor: pointer; font-size: 25px;" class="fas fa-plus float-right "></i>
+               style="cursor: pointer; font-size: 25px;" class="fas fa-plus text-white "></i>
           </span>
 
           <span class="btn btn-sm btn-outline-secondary">
-            <i (click)="onSelectAlbum(album.albumName!)" class="fas fa-play-circle float-right"
+            <i (click)="onSelectAlbum(album.albumName!)" class="fas fa-play-circle text-white"
                style="font-size: 25px; cursor: pointer;"></i>
           </span>
+
+
+          <span class="btn btn-sm btn-outline-secondary">
+            <i (click)="onDeleteAlbum(album.albumName!)" class="fas fa-trash text-white"
+               style="font-size: 25px; cursor: pointer;"></i>
+          </span>
+
 
         </div>
       </div>
 
     </div>
   </div>
+
   <a [hidden]="responseTable?.currentPage! == 0" (click)="previousPage()" class="carousel-control-prev"
      href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -49,10 +55,7 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</body>
 </div>
-
-
 
 
 <div class="modal" tabindex="-1" role="dialog" id="updateAlbum">
@@ -92,7 +95,8 @@
                      [(ngModel)]="updateAlbum?.yearRelease!">
             </div>
             <div class="text-center mt-3">
-              <button type="submit" class="btn btn-lg btn-outline-secondary" (click)="OnSelectAndUpdateAlbum(updateAlb)">Update
+              <button type="submit" class="btn btn-lg btn-outline-secondary"
+                      (click)="OnSelectAndUpdateAlbum(updateAlb)">Update
               </button>
             </div>
           </form>
@@ -144,7 +148,8 @@
               <input type="file" class="form-control" accept="audio/mpeg" (change)="onSelectAudioFile($event)">
             </div>
             <div class="text-center mt-3">
-              <button type="submit" [disabled]="uploadAud.invalid || !audioFile" class="btn btn-lg btn-outline-secondary" (click)="addNewAudioForAlbum(uploadAud)">Upload
+              <button type="submit" [disabled]="uploadAud.invalid || !audioFile"
+                      class="btn btn-lg btn-outline-secondary" (click)="addNewAudioForAlbum(uploadAud)">Upload
               </button>
             </div>
           </form>
@@ -162,3 +167,6 @@
     </div>
   </div>
 </div>
+
+
+

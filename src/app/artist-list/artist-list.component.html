@@ -46,21 +46,23 @@
       </div>
     </div>
 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center justify-content-center px-xl-6 aos-init aos-animate" data-aos="fade-up" >
-      <div class="col my-3" *ngFor="let art of artists">
+    <div class="container" *ngFor="let art of artists">
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center justify-content-center px-xl-6 aos-init aos-animate" data-aos="fade-up">
+      <div class="col my-3" style="cursor: pointer">
         <div class="card border-hover-primary hover-scale">
-          <div class="card-body" (click)="onSelectArtist(art.artist!)">
+          <div class="card-body rounded" (click)="onSelectArtist(art.artist!)" [ngStyle]="{'background': 'linear-gradient(to bottom, transparent 0%, black 100%), url(' + art?.image + ') no-repeat', 'background-size': '100% 100%'}">
             <div class="text-primary mb-5">
 <!--              [ngStyle]="{'background-image': 'url(' + art?.image + ')'}"-->
-                <img src="{{art.image!}}" alt="" style="max-height: 200px" width="200" height="200">
+<!--                <img src="{{art.image!}}" alt="" style="max-height: 200px" width="200" height="200">-->
             </div>
-            <h3 class="font-weight-bold mb-3">{{art.artist}}</h3>
-            <h5 class="text-muted mb-0">{{art.title}}</h5>
+            <h3 class="font-weight-bold mb-3 text-white">{{art.artist}}</h3>
+            <h5 class=" mb-0 text-white">{{art.title}}</h5>
           </div>
         </div>
       </div>
-
     </div>
+    </div>
+
   </div>
 </div>
 </body>
