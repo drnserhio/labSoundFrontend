@@ -184,10 +184,12 @@ export class AlbumListComponent implements OnInit {
   }
 
   onHome() {
+    this.removeAllInLocalCache();
     this.router.navigateByUrl('');
   }
 
   onBack() {
+    this.removeAllInLocalCache();
     this.router.navigateByUrl('/artist_list');
   }
 
@@ -203,5 +205,14 @@ export class AlbumListComponent implements OnInit {
         alert(error.error.message);
       }
     )
+  }
+
+  private deleteSelectAlbum() {
+    SelectAlbumHelper.deleteAlbumNameForLocalCache();
+  }
+
+  private removeAllInLocalCache() {
+    this.deleteSelectArtist();
+    this.deleteSelectAlbum();
   }
 }

@@ -6,11 +6,15 @@ import {SelectAlbumComponent} from "./select-album/select-album.component";
 import {ArtistListComponent} from "./artist-list/artist-list.component";
 import {CreateArtistComponent} from "./create-artist/create-artist.component";
 import {CreateAlbumComponent} from "./create-album/create-album.component";
+import {LoginComponent} from "./login/login.component";
+import {RegisterComponent} from "./register/register.component";
 
 const routes: Routes = [
 
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'albums_list', component: AlbumListComponent},
-  {path: '', redirectTo: '/artist_list', pathMatch: 'full'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'select_album', component: SelectAlbumComponent},
   {path: 'artist_list', component: ArtistListComponent},
   {path: 'create_atrist', component: CreateArtistComponent},

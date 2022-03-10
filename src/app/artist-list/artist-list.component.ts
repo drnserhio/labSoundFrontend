@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ArtistService} from "../service/artist.service";
 import {Artist} from "../model/artist";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -24,6 +24,7 @@ export class ArtistListComponent implements OnInit {
   private getAllArtist() {
     this.artistService.getAllArtist().subscribe(
       (response: Artist[]) => {
+        console.log(response);
         this.artists = response;
       },
       (error: HttpErrorResponse) => {
@@ -35,5 +36,9 @@ export class ArtistListComponent implements OnInit {
   onSelectArtist(artist: string) {
     SelectArtistHelper.selectArtisNametSaveToLocalStorage(artist);
     this.router.navigateByUrl('/albums_list');
+  }
+
+  private removeAtristForLocalCache() {
+    SelectArtistHelper.removeArtistnameForLocalCache();
   }
 }

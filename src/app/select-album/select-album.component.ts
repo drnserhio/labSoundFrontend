@@ -10,6 +10,7 @@ import {Artist} from "../model/artist";
 import {Observable} from "rxjs";
 import {AlbumService} from "../service/album.service";
 import {Album} from "../model/album";
+import {SelectArtistHelper} from "../util/select-artist-helper";
 
 
 @Component({
@@ -18,7 +19,7 @@ import {Album} from "../model/album";
   styleUrls: ['./select-album.component.css']
 })
 
-export class SelectAlbumComponent implements OnInit, OnDestroy {
+export class SelectAlbumComponent implements OnInit {
 
   private selectAlbum?: string;
   audio?: Audio[];
@@ -29,21 +30,18 @@ export class SelectAlbumComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
               private albumService: AlbumService,
               private audioService: AudioService,
+              private artistService: ArtistService,
               private sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
     this.onClickSelectAlbum();
-    this.getAllAudioByAlbumName();
   }
 
-  ngOnDestroy(): void {
-    this.deleteAlbumSelectForLocalCache();
-  }
 
   private onClickSelectAlbum() {
     this.selectAlbum = SelectAlbumHelper.getAlbumNameForLocalStorage()!;
-    console.log(this.selectAlbum)
+    this.getAllAudioByAlbumName();
   }
 
   private getAllAudioByAlbumName() {
@@ -123,5 +121,7 @@ export class SelectAlbumComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+
 }
 

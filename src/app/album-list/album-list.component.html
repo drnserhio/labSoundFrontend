@@ -2,9 +2,9 @@
      *ngFor="let album of responseTable?.content!">
 
 
-  <div class="carousel-inner">
+  <div class="carousel-inner" [ngStyle]="{'background': 'linear-gradient(to bottom, transparent 0%, black 100%), url(' + album?.imagePoster + ') no-repeat', 'background-size': '100% 100%'}">
     <div class="item active">
-      <img src="{{album.imagePoster}}" class="img-fluid" alt="..." style="height: 100%; width: 100%;">
+
 
       <div class="carousel-caption">
         <div>
@@ -167,6 +167,4 @@
     </div>
   </div>
 </div>
-
-
 
