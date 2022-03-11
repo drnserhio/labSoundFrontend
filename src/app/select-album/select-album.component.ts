@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SelectAlbumHelper} from "../util/select-album-helper";
 import {AudioService} from "../service/audio.service";
 import {Audio} from "../model/audio";
@@ -6,11 +6,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {Router} from "@angular/router";
 import {ArtistService} from "../service/artist.service";
-import {Artist} from "../model/artist";
-import {Observable} from "rxjs";
 import {AlbumService} from "../service/album.service";
 import {Album} from "../model/album";
-import {SelectArtistHelper} from "../util/select-artist-helper";
 
 
 @Component({

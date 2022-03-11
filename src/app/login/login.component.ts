@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../model/user";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
-import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -16,13 +15,19 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
+    if (this.authService.isSignInSeccessful()) {
+      this.router.navigateByUrl('/artist_list');
+    } else {
+      this.router.navigateByUrl('/login');
+    }
   }
 
   public signIn(user: User){
     this.authService.loginIn(user).subscribe(
       (response: HttpResponse<User>) => {
-        let accessToken = response.headers.get('access_token');
+        const accessToken = response.headers.get('access_token');
         this.authService.saveTokenToLocalCache(accessToken!);
+        this.authService.saveUserToLocalCache(response.body!);
         this.router.navigateByUrl('/artist_list');
       },
       (error: HttpErrorResponse) => {

@@ -8,21 +8,23 @@ import {CreateArtistComponent} from "./create-artist/create-artist.component";
 import {CreateAlbumComponent} from "./create-album/create-album.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
+import {AuthGuard} from "./guard/auth-guard.guard";
 
 const routes: Routes = [
 
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'albums_list', component: AlbumListComponent},
+  {path: 'albums_list', component: AlbumListComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path: 'select_album', component: SelectAlbumComponent},
-  {path: 'artist_list', component: ArtistListComponent},
-  {path: 'create_atrist', component: CreateArtistComponent},
-  {path: "create_album", component: CreateAlbumComponent}
+  {path: 'select_album', component: SelectAlbumComponent, canActivate: [AuthGuard]},
+  {path: 'artist_list', component: ArtistListComponent, canActivate: [AuthGuard]},
+  {path: 'create_atrist', component: CreateArtistComponent, canActivate: [AuthGuard]},
+  {path: "create_album", component: CreateAlbumComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
+
 export class AppRoutingModule { }

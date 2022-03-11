@@ -19,19 +19,9 @@ export class AuthService {
     return this.http.post<User>(`${this.host}/login`, user, { observe: 'response'});
   }
 
-  public createFormDataLogIn(username: string, password: string) {
-    const formData = new FormData();
-    formData.append("username", username);
-    formData.append("password", password);
-    return formData;
-  }
-
-
   public registerAccount(user: User): Observable<User> {
     return this.http.post(`${this.host}/register`, user);
   }
-
-
 
   public saveTokenToLocalCache(accessToken: string) {
     this.token = accessToken;
@@ -72,10 +62,11 @@ export class AuthService {
   }
 
 
-  private isSignInSeccessful(): any {
+  // @ts-ignore
+  public isSignInSeccessful(): boolean {
     this.loadToken();
     if (this.token !== null && this.token !== '') {
-      if (this.jwtHelper.decodeToken(this.token).sub !== null || '') {
+      if (this.jwtHelper.decodeToken(this.token).sub != null || '') {
         if (this.jwtHelper.getTokenExpirationDate(this.token)) {
           this.saveSessionUsernameLocalCache(this.jwtHelper.decodeToken(this.token).sub!);
           return true;
@@ -90,6 +81,10 @@ export class AuthService {
   private logOut() {
     this.removeTokenInLocalCache();
     this.removeSessionUsernameInLocalCache();
+  }
+
+  saveUserToLocalCache(body: User) {
+    localStorage.setItem("user", JSON.stringify(body));
   }
 }
 

@@ -75,3 +75,4 @@ export class ArtistService {
     return this.http.get<Artist[]>(`${this.host}/all_artist`);
   }
 }
+
