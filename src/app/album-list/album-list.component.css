@@ -1,7 +1,8 @@
 
 
 .fone {
-  background-color: #f9fbff!important;
+  background: linear-gradient(to right, transparent 0%, black 100%), url(https://hdwallsource.com/img/2014/7/sound-wallpaper-42119-43111-hd-wallpapers.jpg) ;
+  background-size: cover;
 }
 
 
@@ -19,13 +20,24 @@ span {
 .carousel-inner,
 .carousel-inner .item,
 .carousel-inner img {
-  height: 100% !important;
+  height: 90% !important;
   width: 100% !important;
 }
+
+.carousel {
+  justify-content: center;
+}
+
+
 
 html,
 body {
   height: 100%;
 }
+
+.shadow {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
 
 

@@ -83,8 +83,5 @@ export class AuthService {
     this.removeSessionUsernameInLocalCache();
   }
 
-  saveUserToLocalCache(body: User) {
-    localStorage.setItem("user", JSON.stringify(body));
-  }
 }
 

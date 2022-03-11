@@ -2,6 +2,12 @@
   background-color: #f9fbff!important;
 
 }
+
+.bg-img {
+  background: linear-gradient(to right, transparent 0%, black 100%), url(https://hdwallsource.com/img/2014/7/sound-wallpaper-42119-43111-hd-wallpapers.jpg) ;
+  background-size: cover;
+}
+
 .pb-6, .py-6 {
   padding-bottom: 3.75rem!important;
 }
@@ -19,9 +25,8 @@
   max-width: 100%;
   width: 100%;
   word-wrap: break-word;
-  background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0,0,0,.125);
+  border: #333333;
   border-radius: .4rem;
   box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
   min-height: 400px;
@@ -36,7 +41,7 @@
 
 .card:hover{
   box-shadow: 3px 3px 3px black;
-  transform:scale(1.1);
+  transform:scale(1.04);
 }
 
 

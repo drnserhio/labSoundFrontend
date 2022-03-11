@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
       (response: HttpResponse<User>) => {
         const accessToken = response.headers.get('access_token');
         this.authService.saveTokenToLocalCache(accessToken!);
-        this.authService.saveUserToLocalCache(response.body!);
         this.router.navigateByUrl('/artist_list');
       },
       (error: HttpErrorResponse) => {

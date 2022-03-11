@@ -4,7 +4,6 @@ import {ArtistService} from "../service/artist.service";
 import {Artist} from "../model/artist";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {SelectArtistHelper} from "../util/select-artist-helper";
 
 @Component({
   selector: 'app-create-artist',
@@ -15,15 +14,13 @@ export class CreateArtistComponent implements OnInit {
   imageFile?: File;
   url?: any;
 
-  constructor(private artistService: ArtistService,
-              private router: Router) { }
+  constructor(private artistService: ArtistService) { }
 
   ngOnInit(): void {
   }
 
   onSelectImage(e: Event) {
     //TODO: valitation image size
-
     // @ts-ignore
     this.imageFile = (<HTMLInputElement>e.target).files[0];
    // @ts-ignore
@@ -44,8 +41,7 @@ export class CreateArtistComponent implements OnInit {
      this.artistService.createArtist(formData).subscribe(
        (response: Artist) => {
          alert("Create artist: " + response.artist)
-         SelectArtistHelper.selectArtisNametSaveToLocalStorage(artistName);
-         this.router.navigateByUrl('/create_album');
+         this.reloadPage();
        },
        (error: HttpErrorResponse) => {
          alert(error.error.message);
@@ -56,13 +52,16 @@ export class CreateArtistComponent implements OnInit {
      this.artistService.createArtistWithoutTitle(formData).subscribe(
        (response: Artist) => {
          alert("Create artist: " + response.artist)
-         SelectArtistHelper.selectArtisNametSaveToLocalStorage(artistName);
-         this.router.navigateByUrl('/create_album');
+         this.reloadPage();
        },
        (error: HttpErrorResponse) => {
          alert(error.error.message);
        }
      )
    }
+  }
+
+  private reloadPage() {
+    window.location.reload();
   }
 }

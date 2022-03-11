@@ -215,4 +215,5 @@ export class AlbumListComponent implements OnInit {
     this.deleteSelectArtist();
     this.deleteSelectAlbum();
   }
+
 }

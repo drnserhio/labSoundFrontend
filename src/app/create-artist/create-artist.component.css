@@ -1,5 +1,6 @@
 .fone {
-  background-color: #f9fbff!important;
+  background: linear-gradient(to right, transparent 0%, black 100%), url(https://hdwallsource.com/img/2014/7/sound-wallpaper-42119-43111-hd-wallpapers.jpg) ;
+  background-size: cover;
 }
 .avatar{
   width:200px;

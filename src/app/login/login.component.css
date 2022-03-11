@@ -13,21 +13,6 @@ body {
 
 /* Background image an color divs*/
 
-.bg-img , .bg-color {
-  min-width: 50%;
-  vertical-align: top;
-  padding: 0;
-  margin-left: 0;
-  height: 100%;
-  background: linear-gradient(to right, transparent 0%, black 100%) black;
-  display: inline-block;
-  overflow: hidden;
-
-}
-
-.bg-color {
-  margin-left: -5px;
-}
 
 .bg-img {
   background: linear-gradient(to right, transparent 0%, black 100%), url(https://hdwallsource.com/img/2014/7/sound-wallpaper-42119-43111-hd-wallpapers.jpg) ;

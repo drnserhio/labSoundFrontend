@@ -9,12 +9,14 @@ import {CreateAlbumComponent} from "./create-album/create-album.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {AuthGuard} from "./guard/auth-guard.guard";
+import {ProfileComponent} from "./profile/profile.component";
 
 const routes: Routes = [
 
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'albums_list', component: AlbumListComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'select_album', component: SelectAlbumComponent, canActivate: [AuthGuard]},
   {path: 'artist_list', component: ArtistListComponent, canActivate: [AuthGuard]},

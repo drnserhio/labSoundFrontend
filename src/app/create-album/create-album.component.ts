@@ -5,29 +5,30 @@ import {AlbumService} from "../service/album.service";
 import {Album} from "../model/album";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {ArtistService} from "../service/artist.service";
+import {Artist} from "../model/artist";
 
 @Component({
   selector: 'app-create-album',
   templateUrl: './create-album.component.html',
   styleUrls: ['./create-album.component.css']
 })
-export class CreateAlbumComponent implements OnInit, OnDestroy {
+export class CreateAlbumComponent implements OnInit {
   url: any;
   private imageFile?: File;
   nameArtist?: string;
+  artists?: Artist[];
 
   constructor(private albumService: AlbumService,
+              private artistService: ArtistService,
               private router: Router) { }
 
   ngOnInit(): void {
-    this.nameArtistIfExists();
-  }
-
-  ngOnDestroy(): void {
-    this.deleteSelectArtisr();
+    this.allArtists();
   }
 
   createAlbum(albumForm: NgForm) {
+    console.log(albumForm);
    const albName = albumForm.value.albumName;
    const art =  albumForm.value.artist;
    const year = albumForm.value.yearRelease;
@@ -36,7 +37,7 @@ export class CreateAlbumComponent implements OnInit, OnDestroy {
    this.albumService.createAlbum(formData, albName).subscribe(
      (response: Album) => {
        alert("create album : " + response.albumName)
-       this.router.navigateByUrl('/albums_list');
+       this.reloadPage();
      },
      (error: HttpErrorResponse) => {
        console.log(error.error.message);
@@ -58,13 +59,18 @@ export class CreateAlbumComponent implements OnInit, OnDestroy {
     }
   }
 
-  private deleteSelectArtisr() {
-    SelectArtistHelper.removeArtistnameForLocalCache();
+  private allArtists() {
+    this.artistService.getAllArtist().subscribe(
+      (response: Artist[]) => {
+        this.artists = response;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.error.message);
+      }
+    );
   }
 
-  private nameArtistIfExists() {
-    if (SelectArtistHelper.getArtistNameForLocalStorage()) {
-      this.nameArtist = SelectArtistHelper.getArtistNameForLocalStorage()!;
-    }
+  private reloadPage() {
+    window.location.reload();
   }
 }

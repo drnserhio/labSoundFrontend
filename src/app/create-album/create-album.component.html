@@ -36,15 +36,15 @@
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
 </nav>
-
-<div class="container bootstrap snippets bootdey">
+<br><br><br><br>
+<div class="container-lg rounded bg-light">
   <h1 class="text-primary">Create album</h1>
   <hr>
   <div class="row">
     <!-- left column -->
     <div class="col-md-3">
       <div class="text-center">
-        <img [src]="url" class="avatar img-circle img-thumbnail" [style.width.%]="70" [style.height.%]="70"
+        <img [src]="url" id="imageLoad" class="avatar img-circle img-thumbnail" [style.width.%]="70" [style.height.%]="70"
              alt="avatar">
         <h6>Upload a different photo...</h6>
 
@@ -60,21 +60,23 @@
         <div class="form-group">
           <label  class="col-lg-3 control-label">Album name:</label>
           <div class="col-lg-8">
-            <input name="albumName" ngModel required class="form-control" type="text" value="Album">
+            <input name="albumName" id="albumName" ngModel required class="form-control" type="text" value="Album">
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" >
           <label class="col-lg-3 control-label">Artist:</label>
-          <div class="col-lg-8">
-            <input name="artist" ngModel required class="form-control" type="text" [ngModel]="nameArtist">
+          <div  class="col-lg-8">
+            <select class="custom-select custom-select-sm form-control" name="artist" id="artist"  required ngModel >
+              <option *ngFor="let artist of artists"  [defaultSelected]="artists?.length">{{artist.artist}}</option>
+            </select>
           </div>
-        </div>
+    </div>
 
         <div class="form-group">
           <label class="col-lg-3 control-label">Year release:</label>
           <div class="col-lg-8">
-            <input name="yearRelease" ngModel required class="form-control" type="text" value="">
+            <input name="yearRelease" ngModel required id="yearRelease" class="form-control" type="text" value="">
           </div>
         </div>
         <button type="button" (click)="createAlbum(createAlbumForm)" [disabled]="createAlbumForm.invalid || !url"
@@ -83,6 +85,7 @@
       </form>
     </div>
   </div>
+  <br>
 </div>
 <hr>
 

@@ -6,4 +6,5 @@ export class User {
   password?: string;
   role?: string;
   enable?: boolean;
+  imageAvatar?: string;
 }

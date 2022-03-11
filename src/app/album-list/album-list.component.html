@@ -1,8 +1,11 @@
-<div id="carouselExampleIndicators" class="carousel slide carousel-fade"
+<body class="fone">
+
+<br>
+<br><br>
+<div id="carouselExampleIndicators" class="carousel slide carousel-fade container shadow"
      *ngFor="let album of responseTable?.content!">
 
-
-  <div class="carousel-inner" [ngStyle]="{'background': 'linear-gradient(to bottom, transparent 0%, black 100%), url(' + album?.imagePoster + ') no-repeat', 'background-size': '100% 100%'}">
+  <div class="carousel-inner " [ngStyle]="{'background': 'linear-gradient(to bottom, transparent 0%, black 100%), url(' + album?.imagePoster + ') no-repeat', 'background-size': '100% 100%'}">
     <div class="item active">
 
 
@@ -45,6 +48,7 @@
     </div>
   </div>
 
+</div>
   <a [hidden]="responseTable?.currentPage! == 0" (click)="previousPage()" class="carousel-control-prev"
      href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -55,7 +59,7 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
+</body>
 
 
 <div class="modal" tabindex="-1" role="dialog" id="updateAlbum">

@@ -35,4 +35,25 @@ export class UserService {
     return this.http.get<User>(`${this.host}/get_email/${email}`);
   }
 
+  public updateImage(username: string, formData: FormData): Observable<boolean> {
+    return this.http.post<boolean>(`${this.host}/update_image/${username}`, formData);
+  }
+
+  public createFormDataForUpdateImageAvatar(imageAvatar: File) {
+    const formData = new FormData();
+    formData.append("imageAvatar", imageAvatar);
+    return formData;
+  }
+
+  public changeNewPassword(username: string, formData: FormData): Observable<boolean> {
+    return this.http.post<boolean>(`${this.host}/change_password/${username}`, formData);
+}
+
+  creatFormDataForChangePassword(oldPass: string, newPass: string, confirmPass: string) {
+    const formData = new FormData();
+    formData.append("oldPassword", oldPass);
+    formData.append("newPassword", newPass);
+    formData.append("confirmPassword", confirmPass);
+    return formData;
+  }
 }
