@@ -1,9 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ArtistService} from "../service/artist.service";
 import {Artist} from "../model/artist";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SelectArtistHelper} from "../util/select-artist-helper";
-import {Route, Router} from "@angular/router";
+import {Router} from "@angular/router";
+import {ResponseTable} from "../model/response-table";
+import {filter} from "rxjs/operators";
 
 @Component({
   selector: 'app-artist-list',
@@ -11,7 +13,10 @@ import {Route, Router} from "@angular/router";
   styleUrls: ['./artist-list.component.css']
 })
 export class ArtistListComponent implements OnInit {
-  artists?: Artist[];
+
+  page = 0;
+  size = 3;
+  responseTable?: ResponseTable<Artist>;
 
   constructor(private artistService: ArtistService,
               private router: Router) { }
@@ -22,10 +27,11 @@ export class ArtistListComponent implements OnInit {
 
 
   private getAllArtist() {
-    this.artistService.getAllArtist().subscribe(
-      (response: Artist[]) => {
+    const formData = this.artistService.creatFormDataForGetAll(this.page, this.size);
+    this.artistService.getAllArtist(formData).subscribe(
+      (response: ResponseTable<Artist>) => {
         console.log(response);
-        this.artists = response;
+        this.responseTable = response;
       },
       (error: HttpErrorResponse) => {
         console.log(error.message);
@@ -38,7 +44,15 @@ export class ArtistListComponent implements OnInit {
     this.router.navigateByUrl('/albums_list');
   }
 
-  private removeAtristForLocalCache() {
-    SelectArtistHelper.removeArtistnameForLocalCache();
+  previousPage() {
+    console.log('previous');
+    this.page -= 1
+    this.getAllArtist();
+  }
+
+  nextPage() {
+    console.log('next');
+    this.page += 1
+    this.getAllArtist();
   }
 }

@@ -7,6 +7,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {ArtistService} from "../service/artist.service";
 import {Artist} from "../model/artist";
+import {ResponseTable} from "../model/response-table";
 
 @Component({
   selector: 'app-create-album',
@@ -60,7 +61,7 @@ export class CreateAlbumComponent implements OnInit {
   }
 
   private allArtists() {
-    this.artistService.getAllArtist().subscribe(
+    this.artistService.getArtists().subscribe(
       (response: Artist[]) => {
         this.artists = response;
       },

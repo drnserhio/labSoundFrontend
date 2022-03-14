@@ -71,8 +71,19 @@ export class ArtistService {
     return this.http.get<Artist>(`${this.host}/get_artist/${artistName}`);
   }
 
-  public getAllArtist(): Observable<Artist[]> {
-    return this.http.get<Artist[]>(`${this.host}/all_artist`);
+  public getArtists(): Observable<Artist[]> {
+    return this.http.get<Artist[]>(`${this.host}/all_list`);
+  }
+
+  public getAllArtist(formData: FormData): Observable<any> {
+    return this.http.post<any>(`${this.host}/all_artist`, formData);
+  }
+
+  public creatFormDataForGetAll(page: number, size: number) {
+    const formData = new FormData();
+    formData.append("page", JSON.stringify(page));
+    formData.append("size", JSON.stringify(size));
+    return formData;
   }
 }
 

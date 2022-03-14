@@ -1,1 +1,34 @@
-<p>register works!</p>
+<body class="bg-img">
+
+<div class="container" id="login">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="login">
+
+        <h1>Register</h1>
+
+        <form #register="ngForm">
+          <div class="form-group">
+            <input type="email" class="form-control" name="username" id="exampleInput"  placeholder="Enter username" ngModel required>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" name="email" id="exampleInputEmail" placeholder="Email" ngModel required>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password" ngModel required>
+          </div>
+
+          <div class="form-check">
+            <label class="forgot-password"><a routerLink="/login">You have an account?</a></label>
+          </div>
+          <br>
+          <button type="submit" [disabled]="register.invalid" (click)="onRegister(register.value)" class="btn btn-lg btn-block btn-secondary">Sign up</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
