@@ -10,6 +10,7 @@ import {Artist} from "../model/artist";
 export class ArtistService {
 
   private host = environment.host + '/artist';
+  private searchHost = environment.host + '/search'
 
   constructor(private http: HttpClient) {
   }
@@ -85,5 +86,10 @@ export class ArtistService {
     formData.append("size", JSON.stringify(size));
     return formData;
   }
+
+  public searchTermArtist(searchTerm: string): Observable<Artist[]> {
+    return this.http.get<Artist[]>(`${this.searchHost}/get/artists/${searchTerm}`);
+  }
+
 }
 

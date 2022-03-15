@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
 import {AudioService} from "../service/audio.service";
 import {ResponseTable} from "../model/response-table";
+import {Artist} from "../model/artist";
 
 @Component({
   selector: 'app-album-list',
@@ -26,6 +27,7 @@ export class AlbumListComponent implements OnInit {
   size = 1;
   column = 'yearRelease';
   responseTable?: ResponseTable<Album>;
+  searchAlbum?: Album[];
 
   constructor(private albumService: AlbumService,
               private audioService: AudioService,
@@ -216,4 +218,21 @@ export class AlbumListComponent implements OnInit {
     this.deleteSelectAlbum();
   }
 
+  onSearch(searchTerm: string) {
+    if (searchTerm == null ||
+      searchTerm == '') {
+      // @ts-ignore
+      document.getElementById('search')!.value = ''
+      this.searchAlbum = [];
+    }
+    this.albumService.searchTermAlbum(searchTerm).subscribe(
+      (response: Album[]) => {
+        this.searchAlbum = response;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.error.message);
+      }
+    )
+
+  }
 }

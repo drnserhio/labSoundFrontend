@@ -6,6 +6,7 @@ import {SelectArtistHelper} from "../util/select-artist-helper";
 import {Router} from "@angular/router";
 import {ResponseTable} from "../model/response-table";
 import {filter} from "rxjs/operators";
+import {NgModel} from "@angular/forms";
 
 @Component({
   selector: 'app-artist-list',
@@ -17,6 +18,7 @@ export class ArtistListComponent implements OnInit {
   page = 0;
   size = 3;
   responseTable?: ResponseTable<Artist>;
+  searchArtist?: Artist[];
 
   constructor(private artistService: ArtistService,
               private router: Router) { }
@@ -54,5 +56,22 @@ export class ArtistListComponent implements OnInit {
     console.log('next');
     this.page += 1
     this.getAllArtist();
+  }
+
+  onSearch(searchTerm: string) {
+    if (searchTerm == null ||
+          searchTerm == '') {
+      // @ts-ignore
+      document.getElementById('search')!.value = ''
+      this.searchArtist = [];
+    }
+    this.artistService.searchTermArtist(searchTerm).subscribe(
+      (response: Artist[]) => {
+        this.searchArtist = response;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.error.message);
+      }
+    )
   }
 }

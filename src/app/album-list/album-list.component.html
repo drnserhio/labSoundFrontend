@@ -35,15 +35,18 @@
 
 
 
-<div id="carouselExampleIndicators" class="carousel slide carousel-fade container shadow mt-4"
+<div id="carouselExampleIndicators" class="carousel slide carousel-fade container shadow mt-4" (click)="onSearch('')"
      *ngFor="let album of responseTable?.content!">
 
 
-  <div class="input-group container col-xl-6 col-lg-8 col-sm-10 justify-content-center mb-2 ">
-    <input type="text" class="form-control" name="search" placeholder="Search">
-    <div class="input-group-append">
+  <div class="input-group container col-xl-6 col-lg-8 col-sm-8 justify-content-center mb-2 ">
+    <input type="text" class="form-control" name="search" placeholder="Search"  #searchTerm="ngModel" ngModel required id="search" (ngModelChange)="onSearch(searchTerm.value)">
+    <div style="cursor: pointer;" class="input-group-append">
       <span class="input-group-text"><i class="fas fa-search text-primary"></i></span>
     </div>
+    <ul class="nv list-group list-group-flush small" style="width: 92%; cursor: pointer" *ngFor="let alb of searchAlbum" >
+      <li class="list-group-item btn-outline-secondary text-left small" style="font-size: 15px" (click)="onSelectAlbum(alb.albumName!)">{{alb.albumName}}</li>
+    </ul>
   </div>
 
   <div class="carousel-inner " [ngStyle]="{'background': 'linear-gradient(to bottom, transparent 0%, black 100%), url(' + album?.imagePoster + ') no-repeat', 'background-size': '100% 100%'}">

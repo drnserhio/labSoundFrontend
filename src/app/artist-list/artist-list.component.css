@@ -1,6 +1,8 @@
 .fone {
   background: linear-gradient(to right, transparent 0%, black 100%), url(https://hdwallsource.com/img/2014/7/sound-wallpaper-42119-43111-hd-wallpapers.jpg) ;
-  background-size: cover;
+  background-size: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -47,6 +49,12 @@ body {
 }
 
 
-
+ul.nv {
+  position: relative;
+  overflow: visible;
+  display: block;
+  z-index: 100000;
+  background-color:white;
+}
 
 

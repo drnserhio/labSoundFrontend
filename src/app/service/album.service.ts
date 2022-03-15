@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Album} from "../model/album";
+import {Artist} from "../model/artist";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import {Album} from "../model/album";
 export class AlbumService {
 
   private host = environment.host + '/album';
+  private searchHost = environment.host + '/search'
 
   constructor(private http: HttpClient) {
   }
@@ -83,5 +85,9 @@ export class AlbumService {
 
   public deleteAlbum(album: string): Observable<boolean> {
     return this.http.delete<boolean>(`${this.host}/delete_album/${album}`)
+  }
+
+  public searchTermAlbum(searchTerm: string): Observable<Artist[]> {
+    return this.http.get<Artist[]>(`${this.searchHost}/get/albums/${searchTerm}`);
   }
 }
