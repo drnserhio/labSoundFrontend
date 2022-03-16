@@ -41,7 +41,7 @@ export class CreateAlbumComponent implements OnInit {
        this.reloadPage();
      },
      (error: HttpErrorResponse) => {
-       console.log(error.error.message);
+       alert(error.error.message);
      }
    )
   }
